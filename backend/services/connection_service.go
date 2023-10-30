@@ -6,8 +6,6 @@ import (
 	"crypto/x509"
 	"errors"
 	"fmt"
-	"github.com/redis/go-redis/v9"
-	"golang.org/x/crypto/ssh"
 	"net"
 	"net/url"
 	"os"
@@ -24,6 +22,9 @@ import (
 	redis2 "tinyrdm/backend/utils/redis"
 	sliceutil "tinyrdm/backend/utils/slice"
 	strutil "tinyrdm/backend/utils/string"
+
+	"github.com/redis/go-redis/v9"
+	"golang.org/x/crypto/ssh"
 )
 
 type cmdHistoryItem struct {
@@ -1542,6 +1543,13 @@ func (c *connectionService) RenameKey(connName string, db int, key, newKey strin
 
 	resp.Success = true
 	return
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
 }
 
 // GetCmdHistory get redis command history

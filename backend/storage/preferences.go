@@ -2,13 +2,14 @@ package storage
 
 import (
 	"fmt"
-	"gopkg.in/yaml.v3"
 	"log"
 	"reflect"
 	"strings"
 	"sync"
 	"tinyrdm/backend/consts"
 	"tinyrdm/backend/types"
+
+	"gopkg.in/yaml.v3"
 )
 
 type PreferencesStorage struct {
@@ -38,6 +39,20 @@ func (p *PreferencesStorage) getPreferences() (ret types.Preferences) {
 		return
 	}
 	return
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
 }
 
 // GetPreferences Get preferences from local
